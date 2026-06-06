@@ -27,6 +27,8 @@ body {
   background-attachment: fixed;
 }
 
+img { max-width: 100%; height: auto; }
+
 /* ===== TOP BAR ===== */
 .top {
   background: linear-gradient(90deg, #1a0000, #0a0a0a);
@@ -1086,11 +1088,20 @@ nav ul li a.active {
     font-size: 26px;
   }
   
+  .fs-img-overlay .fs-img-title {
+    font-size: 20px;
+  }
+  
+  .fs-img-wrap .fs-img {
+    min-height: 260px;
+  }
+  
   .lay2 {
     grid-template-columns: 1fr;
   }
   
   .side {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
   
@@ -1111,6 +1122,10 @@ nav ul li a.active {
   nav ul li a {
     text-align: center;
   }
+  
+  .m-h1 {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1130,8 +1145,34 @@ nav ul li a.active {
     font-size: 20px;
   }
   
+  .fs-img-overlay .fs-img-title {
+    font-size: 17px;
+  }
+  
+  .fs-img-overlay {
+    padding: 20px 15px 12px;
+  }
+  
+  .fs-img-overlay .fs-img-badge {
+    font-size: 10px;
+    padding: 4px 12px;
+    margin-bottom: 8px;
+  }
+  
+  .fs-img-overlay .fs-img-meta {
+    font-size: 10px;
+  }
+  
+  .fs-img-wrap .fs-img {
+    min-height: 200px;
+  }
+  
   .feat-story .fs-in {
     padding: 20px 15px;
+  }
+  
+  .card-img-wrap {
+    height: 140px;
   }
   
   .side {
@@ -1158,6 +1199,80 @@ nav ul li a.active {
   
   .ctr h2 {
     font-size: 18px;
+  }
+  
+  .m-h1 {
+    font-size: 20px;
+  }
+  
+  .m-wrap {
+    padding: 20px 18px;
+  }
+  
+  .top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+  
+  .feat-story .fs-head .stats {
+    gap: 12px;
+  }
+  
+  .feat-story .fs-head .stats span {
+    font-size: 10px;
+  }
+  
+  .sb-sub .sub-in {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .fs-img-overlay .fs-img-title {
+    font-size: 15px;
+  }
+  
+  .fs-img-wrap .fs-img {
+    min-height: 160px;
+  }
+  
+  .card-img-wrap {
+    height: 120px;
+  }
+  
+  .logo {
+    font-size: 28px;
+  }
+  
+  .feat-story .fs-head h1 {
+    font-size: 17px;
+  }
+  
+  .feat-story .fs-head .desc {
+    font-size: 13px;
+  }
+  
+  .grid {
+    gap: 12px;
+  }
+  
+  .m-h1 {
+    font-size: 17px;
+  }
+  
+  .m-bd {
+    font-size: 14px;
+  }
+  
+  .tick-t {
+    font-size: 10px;
+  }
+  
+  .ft-c h4 {
+    font-size: 14px;
   }
 }
 </style>
@@ -1215,7 +1330,7 @@ nav ul li a.active {
     <div class="fs-in">
       <div class="fs-top">
         <div class="fs-img-wrap">
-          <img class="fs-img" src="WhatsApp Image 2026-06-06 at 05.09.13.jpeg" alt="صورة القصة الرئيسية">
+          <img class="fs-img" src="victim.jpg" alt="صورة القصة الرئيسية">
           <div class="fs-img-gradient"></div>
           <div class="fs-img-overlay">
             <div class="fs-img-badge">🔴 حصري</div>
