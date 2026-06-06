@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تمارة TV - جريدة إلكترونية مغربية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-attachment: fixed;
+}
+
+/* ===== TOP BAR ===== */
+.top {
+  background: linear-gradient(90deg, #1a0000, #0a0a0a);
+  border-bottom: 1px solid #222;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #888;
+  position: relative;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.top .dt {
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.top .soc {
+  display: flex;
+  gap: 12px;
+}
+
+.top .soc a {
+  color: #666;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.top .soc a:hover {
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 35px 20px 18px;
+  background: linear-gradient(180deg, #1a0000 0%, #0a0a0a 100%);
+  border-bottom: 3px solid #e74c3c;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.logo {
+  font-size: 52px;
+  font-weight: 900;
+  color: #e74c3c;
+  text-shadow: 0 0 40px rgba(231, 76, 60, 0.5), 0 0 20px rgba(231, 76, 60, 0.3);
+  letter-spacing: 4px;
+  font-family: 'Cairo', sans-serif;
+  animation: glow 3s ease-in-out infinite;
+  margin-bottom: 5px;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 40px rgba(231, 76, 60, 0.5); }
+  50% { text-shadow: 0 0 60px rgba(231, 76, 60, 0.8); }
+}
+
+.lsub {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 3px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  background: #0d0d0d;
+  border-bottom: 1px solid #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: #999;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.3s;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #e74c3c;
+  border-bottom-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.05);
+}
+
+/* ===== TICKER ===== */
+.tick {
+  background: linear-gradient(90deg, #8e0000, #c0392b);
+  overflow: hidden;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.tick-l {
+  background: #8e0000;
+  color: #fff;
+  padding: 0 18px;
+  font-weight: 900;
+  font-size: 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+  box-shadow: inset -1px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0%, 100% { background: #8e0000; }
+  50% { background: #c0392b; }
+}
+
+.tick-t {
+  white-space: nowrap;
+  animation: scroll 50s linear infinite;
+  font-size: 12px;
+  font-weight: 600;
+  padding-right: 20px;
+  color: #fff;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ===== MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  overflow-y: auto;
+  backdrop-filter: blur(2px);
+}
+
+.modal.on {
+  display: block;
+}
+
+.m-in {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.m-x {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background: #e74c3c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  border: none;
+  font-size: 28px;
+  color: #fff;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.m-x:hover {
+  transform: scale(1.15) rotate(90deg);
+  background: #c0392b;
+}
+
+.m-img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.5);
+}
+
+.m-wrap {
+  background: linear-gradient(135deg, #1a0a0a 0%, #0d0d0d 100%);
+  padding: 30px 35px;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #222;
+}
+
+.m-bg {
+  display: inline-block;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+}
+
+.m-h1 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.35;
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+}
+
+.m-mt {
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #222;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.m-mt .m-cat {
+  background: #e74c3c20;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #e74c3c;
+  font-size: 11px;
+}
+
+.m-bd {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #ddd;
+}
+
+.m-bd p {
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.m-bd p:first-child::first-letter {
+  font-size: 52px;
+  font-weight: 900;
+  color: #e74c3c;
+  float: right;
+  line-height: 0.8;
+  margin-left: 10px;
+  margin-top: 4px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.m-bd .mq {
+  margin: 25px 0;
+  padding: 25px 30px;
+  background: linear-gradient(135deg, #1a0000, #2d0000);
+  border: 2px solid #e74c3c;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e74c3c;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.m-bd .mq .ms {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+/* ===== PAGE MANAGEMENT ===== */
+.page {
+  display: none;
+}
+
+.page.on {
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== FEATURED STORY ===== */
+.feat-story {
+  background: linear-gradient(180deg, #1a0000 0%, #0d0d0d 100%);
+  border-bottom: 4px solid #e74c3c;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.feat-story .fs-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 25px;
+}
+
+.feat-story .fs-top {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 35px;
+  align-items: start;
+}
+
+.feat-story .fs-img {
+  width: 100%;
+  border-radius: 10px;
+  filter: brightness(0.8);
+  transition: all 0.4s;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.feat-story .fs-img:hover {
+  filter: brightness(1);
+  transform: translateY(-5px);
+}
+
+/* ===== IMAGE OVERLAY ===== */
+.fs-img-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+.fs-img-wrap .fs-img {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  filter: brightness(0.7);
+  transition: all 0.5s;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.fs-img-wrap:hover .fs-img {
+  filter: brightness(0.9);
+  transform: scale(1.03);
+}
+
+.fs-img-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.95));
+  pointer-events: none;
+}
+
+.fs-img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 25px 20px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fs-img-overlay .fs-img-badge {
+  display: inline-block;
+  background: #e74c3c;
+  color: #fff;
+  padding: 6px 18px;
+  font-size: 12px;
+  font-weight: 900;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 15px rgba(231,76,60,0.4);
+  animation: pulseBadge 2s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { box-shadow: 0 2px 15px rgba(231,76,60,0.4); }
+  50% { box-shadow: 0 2px 25px rgba(231,76,60,0.7); }
+}
+
+.fs-img-overlay .fs-img-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+  font-family: 'Cairo', sans-serif;
+}
+
+.fs-img-overlay .fs-img-meta {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+}
+
+.feat-story .fs-head .badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  padding: 8px 18px;
+  font-size: 11px;
+  font-weight: 900;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+}
+
+.feat-story .fs-head h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+}
+
+.feat-story .fs-head .sub {
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feat-story .fs-head .meta {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.feat-story .fs-head .stats {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.feat-story .fs-head .stats span {
+  font-size: 12px;
+  color: #888;
+}
+
+.feat-story .fs-head .stats strong {
+  color: #e74c3c;
+  font-size: 15px;
+}
+
+.feat-story .fs-head .desc {
+  color: #ccc;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.feat-story .fs-head .more-link {
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 10px 16px;
+  border-radius: 5px;
+}
+
+.feat-story .fs-head .more-link:hover {
+  gap: 15px;
+  background: rgba(231, 76, 60, 0.2);
+  transform: translateX(5px);
+}
+
+/* ===== ARTICLE DISPLAY ===== */
+.fs-article {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 25px;
+}
+
+.fs-article.on {
+  display: block;
+}
+
+.fs-article .fsa-in {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fs-article .art-text {
+  font-size: 17px;
+  line-height: 2;
+  color: #ddd;
+}
+
+.fs-article .art-text p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.fs-article .art-text .hl {
+  border-right: 5px solid #e74c3c;
+  padding-right: 18px;
+  font-weight: 700;
+  font-size: 19px;
+  color: #e74c3c;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.fs-article .art-text .quot {
+  margin: 30px 0;
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1a0000, #2d0000);
+  border: 2px solid #e74c3c;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+  color: #e74c3c;
+  line-height: 1.9;
+  font-style: italic;
+  position: relative;
+}
+
+.fs-article .art-text .quot::before {
+  content: '"';
+  position: absolute;
+  right: 15px;
+  top: -10px;
+  font-size: 60px;
+  opacity: 0.15;
+}
+
+.fs-article .art-text .quot .src {
+  display: block;
+  color: #999;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 10px;
+  font-style: normal;
+}
+
+.fs-article .heart-big {
+  text-align: center;
+  font-size: 60px;
+  opacity: 0.15;
+  margin: 40px 0;
+  animation: heartBeat 4s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.15); opacity: 0.25; }
+}
+
+/* ===== SEPARATOR ===== */
+.sep {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e74c3c, transparent);
+  margin: 50px auto;
+  max-width: 300px;
+  opacity: 0.5;
+}
+
+/* ===== LAYOUT & GRID ===== */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 25px;
+}
+
+.ctr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+.ctr h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #e74c3c;
+  border-right: 4px solid #e74c3c;
+  padding-right: 15px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.ctr .fl {
+  color: #666;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.ctr .fl:hover {
+  color: #e74c3c;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: linear-gradient(135deg, #1a0a0a, #0d0d0d);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 1px solid #222;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(231, 76, 60, 0.15);
+  border-color: #e74c3c;
+}
+
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.65);
+  transition: all 0.5s;
+}
+
+.card:hover .card-img-wrap img {
+  filter: brightness(1);
+  transform: scale(1.08);
+}
+
+.card-img-wrap .card-img-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  pointer-events: none;
+}
+
+.card-img-wrap .card-img-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e74c3c;
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 900;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+
+.card .inf {
+  padding: 14px 15px 16px;
+}
+
+.card .inf .tg {
+  font-size: 10px;
+  color: #e74c3c;
+  font-weight: 900;
+  display: block;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card .inf h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card .inf span {
+  font-size: 11px;
+  color: #777;
+}
+
+/* ===== MORE BUTTON ===== */
+.more-btn {
+  display: block;
+  width: fit-content;
+  margin: 35px auto;
+  padding: 12px 40px;
+  background: transparent;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.more-btn:hover {
+  background: #e74c3c;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* ===== SIDEBAR ===== */
+.lay2 {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.sb {
+  background: linear-gradient(135deg, #1a0a0a, #0d0d0d);
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sb h3 {
+  font-size: 14px;
+  font-weight: 900;
+  color: #e74c3c;
+  border-bottom: 2px solid #e74c3c;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.si {
+  padding: 12px 0;
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.si:last-child {
+  border-bottom: none;
+}
+
+.si:hover {
+  padding-right: 8px;
+  color: #e74c3c;
+}
+
+.si h4 {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 3px;
+  font-weight: 700;
+}
+
+.si span {
+  font-size: 11px;
+  color: #777;
+}
+
+.si .tg {
+  font-size: 10px;
+  color: #e74c3c;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.wg {
+  background: linear-gradient(135deg, #1a0000, #0a0a2e);
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sb-about {
+  background: linear-gradient(135deg, #1a0000, #0d0d0d);
+  border: 1px solid #2a0a0a;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.sb-about .ab-logo {
+  font-size: 28px;
+  font-weight: 900;
+  color: #e74c3c;
+  margin-bottom: 8px;
+}
+
+.sb-about p {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.8;
+}
+
+.sb-social {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.sb-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid #333;
+}
+
+.sb-social a:hover {
+  transform: translateY(-3px);
+  background: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.sb-sub {
+  background: linear-gradient(135deg, #0a0a1a, #1a0000);
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+}
+
+.sb-sub h3 {
+  font-size: 13px;
+  color: #e74c3c;
+  margin-bottom: 8px;
+}
+
+.sb-sub p {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.sb-sub .sub-in {
+  display: flex;
+  gap: 6px;
+}
+
+.sb-sub input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 11px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.sb-sub input:focus {
+  border-color: #e74c3c;
+}
+
+.sb-sub button {
+  padding: 8px 16px;
+  background: #e74c3c;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  transition: background 0.3s;
+}
+
+.sb-sub button:hover {
+  background: #c0392b;
+}
+
+/* ===== FOOTER ===== */
+.ft {
+  background: linear-gradient(180deg, #0b0b0b, #000);
+  border-top: 4px solid #e74c3c;
+  padding: 50px 25px 0;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.ft-g {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.ft-c h4 {
+  font-size: 16px;
+  color: #e74c3c;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e74c3c40;
+  display: inline-block;
+  width: 100%;
+  font-family: 'Cairo', sans-serif;
+}
+
+.ft-c a {
+  display: block;
+  color: #999;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 7px 0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.ft-c a:hover {
+  color: #e74c3c;
+  padding-right: 8px;
+}
+
+.ft-c p {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+.ft-c .ci {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #999;
+  font-size: 12px;
+  padding: 8px 0;
+  transition: color 0.3s;
+}
+
+.ft-c .ci:hover {
+  color: #e74c3c;
+}
+
+.ft-b {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #222;
+  color: #666;
+  font-size: 12px;
+  grid-column: 1 / -1;
+}
+
+.ft-b strong {
+  color: #e74c3c;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .feat-story .fs-top {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 900px) {
+  .feat-story .fs-head h1 {
+    font-size: 26px;
+  }
+  
+  .lay2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .side {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ft-g {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul li {
+    width: 100%;
+  }
+  
+  nav ul li a {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 36px;
+  }
+  
+  .m-x {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    right: 15px;
+    top: 15px;
+  }
+  
+  .feat-story .fs-head h1 {
+    font-size: 20px;
+  }
+  
+  .feat-story .fs-in {
+    padding: 20px 15px;
+  }
+  
+  .side {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ft-g {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .layout {
+    padding: 20px 15px;
+  }
+  
+  nav ul li a {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+  
+  .ctr h2 {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top">
+  <div class="dt" id="todayDate">الجمعة، 6 يونيو 2026</div>
+  <div class="soc">
+    <a title="فيسبوك">📘 فيسبوك</a>
+    <a title="تويتر">𝕏 تويتر</a>
+    <a title="يوتيوب">🎥 يوتيوب</a>
+    <a title="تيليجرام">✈️ تيليجرام</a>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="logo">تمارة TV</div>
+  <div class="lsub">📰 جريدة إلكترونية مغربية مستقلة — أخبار محلية وعالمية</div>
+</header>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <ul>
+    <li><a class="active" onclick="switchPage('home')">🏠 الرئيسية</a></li>
+    <li><a onclick="switchPage('world')">🌍 عالم</a></li>
+    <li><a onclick="switchPage('morocco')">🇲🇦 مغرب</a></li>
+    <li><a onclick="switchPage('sport')">⚽ رياضة</a></li>
+    <li><a onclick="switchPage('economy')">📊 اقتصاد</a></li>
+    <li><a onclick="switchPage('tech')">💻 تكنولوجيا</a></li>
+    <li><a onclick="switchPage('culture')">🎭 ثقافة</a></li>
+  </ul>
+</nav>
+
+<!-- ===== TICKER ===== -->
+<div class="tick">
+  <div class="tick-l">🔴 عاجل</div>
+  <div class="tick-t">
+    🌍 زلزال بقوة 7.2 يضرب اليابان • 🇲🇦 المغرب يستعد للمونديال 2030 • 📈 النفط يرتفع بنسبة 5% • 🔬 اكتشاف علاج جديد للسرطان • 🏛️ الملك يترأس جلسة حكومية مهمة • ⚽ النجم المغربي يحقق إنجازاً تاريخياً • 🌊 أمطار غزيرة في عدة مناطق مغربية
+  </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal" id="modal">
+  <div class="m-x" onclick="closeModal()">✕</div>
+  <div class="m-in" id="mi"></div>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page on">
+  <!-- Featured Story -->
+  <div class="feat-story">
+    <div class="fs-in">
+      <div class="fs-top">
+        <div class="fs-img-wrap">
+          <img class="fs-img" src="WhatsApp Image 2026-06-06 at 05.09.13.jpeg" alt="صورة القصة الرئيسية">
+          <div class="fs-img-gradient"></div>
+          <div class="fs-img-overlay">
+            <div class="fs-img-badge">🔴 حصري</div>
+            <div class="fs-img-title">انتحار شاب في ظروف غامضة بمرس الخير يستنفر السلطات</div>
+            <div class="fs-img-meta">تمارة، المغرب | الجمعة 6 يونيو 2026 | 12,847 مشاهدة</div>
+          </div>
+        </div>
+        <div class="fs-head">
+          <div class="badge">⚡ خبر عاجل</div>
+          <h1>انتحار شاب في ظروف غامضة بمرس الخير يستنفر السلطات</h1>
+          <div class="sub">📌 حادثة مؤلمة تشعل وسائل التواصل والآراء العامة</div>
+          <div class="meta">
+            <span>📅 6 يونيو 2026</span>
+            <span>📍 تمارة، الرباط</span>
+          </div>
+          <div class="stats">
+            <span>👁️ <strong>12,847</strong> مشاهدة</span>
+            <span>📤 <strong>2,341</strong> مشاركة</span>
+            <span>💬 <strong>1,876</strong> تعليق</span>
+          </div>
+          <div class="desc">
+            علمت "تمارة TV" من مصادر موثوقة، أنه تم صباح اليوم الجمعة 6 يونيو 2026، العثور على جثة شاب يبلغ 24 سنة، بمنطقة مرس الخير. الحادثة المؤلمة أثارت موجة من الحزن والقلق حول الصحة النفسية للشباب المغربي وضغوط الحياة المادية والنفسية.
+          </div>
+          <a class="more-link" onclick="toggleArticle()">اقرأ القصة الكاملة ←</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Article -->
+  <div class="fs-article" id="fsFull">
+    <div class="fsa-in">
+      <div class="heart-big">🕊️</div>
+      <div class="art-text">
+        <p class="hl">علمت "تمارة TV" من مصادر محلية موثوقة، أنه تم صباح اليوم الجمعة 6 يونيو 2026، العثور على جثة شاب يبلغ من العمر 24 سنة، داخل منزله بمنطقة مرس الخير في تمارة، في ظروف وصفتها المصادر الأولية بـ"الغامضة" و"المؤلمة".</p>
+
+        <p>حسب المعلومات الأولية التي حصلت عليها الجريدة، فإن الهالك — الذي تحتفظ الجريدة بمعرفته حفاظاً على كرامة الأسرة — كان يعمل في قطاع الخدمات، وكان معروفاً لدى جيرانه بأخلاقه العالية وطيبة قلبه. كثيرون من قريته أشاروا إلى أنه كان شاباً مجتهداً طموحاً.</p>
+
+        <p>أكدت مصادر مقربة من الأسرة أن الشاب كان يعاني من ضغوط نفسية حادة خلال الأسابيع الأخيرة، بسبب ظروف مادية صعبة ومشاكل شخصية أثقلت كاهله. كان الشاب يحاول إخفاء معاناته، لكن علامات الحزن والإرهاق ظهرت عليه بشكل واضح.</p>
+
+        <p>وفور إخطار السلطات بالواقعة، هرعت عناصر الأمن الوطني والوقاية المدنية إلى عين المكان. تم تسييج المنطقة وجمع الأدلة الأولية. وحسب التقارير الأولية، تم نقل الجثة إلى مستودع الأموات بمستشفى تمارة للفحص الطبي الشرعي.</p>
+
+        <div class="quot">
+          "كان عندي أحلام كبيرة وطموحات عالية، لكن الدنيا ضاقت بي وفقدت الأمل"
+          <span class="ms">— آخر رسالة وجدت في هاتف الفقيد</span>
+        </div>
+
+        <p>أشارت مصادر قريبة من العائلة إلى أن والدة الشاب تعرضت لصدمة عصبية حادة عند تلقيها الخبر الفاجع. العائلة الآن تحت رعاية نفسية مكثفة من قبل متخصصين، والجيران والأصدقاء يقفون بجانبهم في هذا الوقت الصعب.</p>
+
+        <p>الجيران عبروا عن صدمتهم الكبيرة. أحد سكان المنطقة قال في تصريح حصري: "هذا الشاب كان من أطيب الناس. كان يحيي علينا دائماً، وكان يساعد الجميع. لا نفهم كيف وصل به الحال إلى هنا دون أن نشعر."</p>
+
+        <p>من جانبها، دعت فعاليات مدنية وجمعوية في المدينة إلى ضرورة الاهتمام بالصحة النفسية للشباب، وزيادة الوعي حول الاكتئاب والضغوط النفسية. كما دعت الجميع إلى الاستماع إلى بعضهم البعض والانتباه للعلامات التحذيرية.</p>
+
+        <div class="quot" style="border-color: #555; background: rgba(255, 255, 255, 0.03);">
+          إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ<br>اللهم ارحمه رحمة واسعة وأسكنه فسيح جناتك
+          <span class="src">— تمارة TV تعزي أسرة الفقيد والعاملين في المجال الاجتماعي</span>
+        </div>
+
+        <p>خصصت وزارة الصحة خطاً ساخناً للاستشارة النفسية. يمكن التواصل عبر الرقم <strong>1001</strong> للحصول على الدعم النفسي المجاني.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Other News -->
+  <div class="layout">
+    <div class="lay2">
+      <div class="main">
+        <div class="ctr">
+          <h2>📰 أخبار أخرى مهمة</h2>
+        </div>
+        <div class="grid" id="homeGrid"></div>
+        <div id="homeMore"></div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="side">
+        <!-- Breaking News -->
+        <div class="sb">
+          <h3>🔥 الأخبار الساخنة</h3>
+          <div class="si" onclick="openArticle(1)">
+            <span class="tg">مغرب</span>
+            <h4>المغرب يعلن عن استثمارات ضخمة في الطاقة المتجددة</h4>
+            <span>منذ ساعتين</span>
+          </div>
+          <div class="si" onclick="openArticle(2)">
+            <span class="tg">عالم</span>
+            <h4>أوروبا تواجه موجة حر قياسية هذا الصيف</h4>
+            <span>منذ 4 ساعات</span>
+          </div>
+          <div class="si" onclick="openArticle(3)">
+            <span class="tg">رياضة</span>
+            <h4>نجم كرة القدم المغربي يوقع عقداً ضخماً</h4>
+            <span>منذ 5 ساعات</span>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div class="sb-about">
+          <div class="ab-logo">تمارة TV</div>
+          <p>جريدة إلكترونية مغربية مستقلة تنقل أخبار المملكة والعالم بكل مصداقية وموضوعية. نسعى لإبقاء قرائنا على اطلاع دائم بأحدث التطورات.</p>
+          <div class="sb-social">
+            <a href="#">📘</a>
+            <a href="#">🐦</a>
+            <a href="#">📹</a>
+            <a href="#">✈️</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="sb-sub">
+          <h3>✉️ اشترك في النشرة</h3>
+          <p>احصل على أهم الأخبار مباشرة في بريدك الإلكتروني</p>
+          <div class="sub-in">
+            <input type="email" placeholder="بريدك الإلكتروني">
+            <button>اشترك</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ===== OTHER PAGES ===== -->
+<div id="page-world" class="page">
+  <div class="layout">
+    <div class="ctr"><h2>🌍 أخبار العالم</h2></div>
+    <div class="grid" id="worldGrid"></div>
+  </div>
+</div>
+
+<div id="page-morocco" class="page">
+  <div class="layout">
+    <div class="ctr"><h2>🇲🇦 أخبار المغرب</h2></div>
+    <div class="grid" id="moroccoGrid"></div>
+  </div>
+</div>
+
+<div id="page-sport" class="page">
+  <div class="layout">
+    <div class="ctr"><h2>⚽ الرياضة</h2></div>
+    <div class="grid" id="sportGrid"></div>
+  </div>
+</div>
+
+<div id="page-economy" class="page">
+  <div class="layout">
+    <div class="ctr"><h2>📊 الاقتصاد والأعمال</h2></div>
+    <div class="grid" id="economyGrid"></div>
+  </div>
+</div>
+
+<div id="page-tech" class="page">
+  <div class="layout">
+    <div class="ctr"><h2>💻 التكنولوجيا والابتكار</h2></div>
+    <div class="grid" id="techGrid"></div>
+  </div>
+</div>
+
+<div id="page-culture" class="page">
+  <div class="layout">
+    <div class="ctr"><h2>🎭 الثقافة والفنون</h2></div>
+    <div class="grid" id="cultureGrid"></div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="ft">
+  <div class="ft-g">
+    <div class="ft-c">
+      <h4>🗂️ الأقسام</h4>
+      <a onclick="switchPage('home')">الرئيسية</a>
+      <a onclick="switchPage('world')">أخبار العالم</a>
+      <a onclick="switchPage('morocco')">أخبار المغرب</a>
+      <a onclick="switchPage('sport')">الرياضة</a>
+      <a onclick="switchPage('economy')">الاقتصاد</a>
+      <a onclick="switchPage('tech')">التكنولوجيا</a>
+      <a onclick="switchPage('culture')">الثقافة</a>
+    </div>
+    <div class="ft-c">
+      <h4>🔗 روابط مهمة</h4>
+      <a>من نحن</a>
+      <a>اتصل بنا</a>
+      <a>سياسة الخصوصية</a>
+      <a>شروط الاستخدام</a>
+      <a>الإعلانات</a>
+    </div>
+    <div class="ft-c">
+      <h4>📞 التواصل معنا</h4>
+      <p>جريدة إلكترونية مغربية مستقلة، نقدم لكم الأخبار بمصداقية وموضوعية. نرحب بملاحظاتكم واقتراحاتكم.</p>
+      <div class="ci">📧 contact@tamara-tv.ma</div>
+      <div class="ci">☎️ +212 5 37 75 12 34</div>
+      <div class="ci">📍 تمارة، الرباط، المغرب</div>
+    </div>
+  </div>
+  <div class="ft-b">©️ 2024-2026 <strong>تمارة TV</strong> — جميع الحقوق محفوظة | صُنع بـ ❤️ في المغرب</div>
+</footer>
+
+<script>
+// ===== DATABASE ===== 
+const articles = [
+  // Morocco
+  { id: 1, cat: 'مغرب', title: 'المغرب يعلن عن استثمارات ضخمة في الطاقة المتجددة', body: '<p>أعلنت الحكومة المغربية عن خطة استثمارية طموحة بقيمة 50 مليار درهم لتطوير الطاقة المتجددة. الخطة تستهدف توليد 80% من الكهرباء من مصادر نظيفة بحلول 2030. سيتم إنشاء مشاريع ضخمة للطاقة الشمسية والريحية في مختلف مناطق المملكة.</p><p>قال وزير الطاقة: "هذا استثمار في مستقبل أخضر للمغرب وللأجيال القادمة."</p><div class="mq">هذا الاستثمار سيوفر آلاف فرص العمل ويعزز الاستقلالية الطاقية للمملكة</div><p>المشروع يأتي في إطار التزام المغرب بمحاربة تغير المناخ والوفاء بتعهداته الدولية.</p>', img: 'https://images.unsplash.com/photo-1509391366360-2e938d440dbb?w=500&h=300&fit=crop', time: 'منذ ساعتين' },
+  
+  // World
+  { id: 2, cat: 'عالم', title: 'أوروبا تواجه موجة حر قياسية هذا الصيف', body: '<p>تشهد أوروبا ارتفاعاً قياسياً في درجات الحرارة، مع توقعات بتجاوز 45 درجة مئوية في عدة دول. الحرارة الشديدة أدت بالفعل إلى حرائق غابات مدمرة في إسبانيا وإيطاليا واليونان.</p><p>حذرت السلطات الصحية من خطر الجفاف والأمراض المرتبطة بالحرارة، خاصة بين كبار السن والأطفال.</p><div class="mq">متخصصون يحذرون من تأثر التأثر الاقتصادي والزراعي بسبب موجات الحر المتكررة</div><p>دعت الحكومات الأوروبية السكان للالتزام بتدابير السلامة والبقاء في أماكن مكيفة.</p>', img: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=500&h=300&fit=crop', time: 'منذ 4 ساعات' },
+  
+  // Sport
+  { id: 3, cat: 'رياضة', title: 'نجم كرة القدم المغربي يوقع عقداً ضخماً مع فريق أوروبي', body: '<p>وقع النجم المغربي الشهير عقداً جديداً مع أحد أفضل الأندية الأوروبية، بعقد خمسة سنوات. قيمة العقد تقدر بحوالي 75 مليون يورو، مما يجعله من أكثر اللاعبين المغاربة رواتباً.</p><p>قال اللاعب في تصريح صحفي: "أنا فخور بتمثيل المغرب على أعلى المستويات العالمية."</p><div class="mq">هذا العقد يعكس الثقة الكبيرة في مواهب اللاعبين المغاربة على الصعيد الدولي</div><p>يتوقع أن يساهم اللاعب في تحقيق بطولات مهمة مع فريقه الجديد خلال الموسم المقبل.</p>', img: 'https://images.unsplash.com/photo-1461869814035-3dea7ad8e131?w=500&h=300&fit=crop', time: 'منذ 5 ساعات' },
+  
+  // Economy
+  { id: 4, cat: 'اقتصاد', title: 'البورصة المغربية تسجل أفضل أداء سنوي في 5 سنوات', body: '<p>حققت بورصة الدار البيضاء ارتفاعاً ملحوظاً هذا العام، مع تحسن مستمر في قيمة الأسهم والمؤشرات الرئيسية. المستثمرون المحليون والأجانب أظهروا ثقة متجددة في السوق المالي المغربي.</p><p>المحللون الماليون يرجعون هذا النمو إلى الاستقرار الاقتصادي والسياسي وتحسن أداء القطاعات الصناعية والخدماتية.</p><div class="mq">يتوقع استمرار الأداء الإيجابي للبورصة مع دخول استثمارات جديدة في المشاريع الكبرى</div><p>البنوك والشركات المدرجة حققت أرباحاً قياسية في النصف الأول من السنة.</p>', img: 'https://images.unsplash.com/photo-1611432097413-a5ecaa309dd5?w=500&h=300&fit=crop', time: 'منذ 6 ساعات' },
+  
+  // Technology
+  { id: 5, cat: 'تكنولوجيا', title: 'المغرب يطلق منصة رقمية جديدة للحكومة الإلكترونية', body: '<p>أطلقت الحكومة المغربية منصة رقمية متطورة توفر خدمات إدارية شاملة للمواطنين والشركات. المنصة تستخدم أحدث تقنيات الذكاء الاصطناعي والأمان السيبراني.</p><p>هذه المنصة ستسهل الحصول على الوثائق والتراخيص والرخص دون الحاجة لزيارة المكاتب الحكومية.</p><div class="mq">الخدمة الإلكترونية المتكاملة ستوفر الوقت والجهد على ملايين المستخدمين سنوياً</div><p>الهدف هو جعل المغرب من الدول الرائدة في مجال الحكومة الإلكترونية بالمنطقة.</p>', img: 'https://images.unsplash.com/photo-1460925895917-aae19298e888?w=500&h=300&fit=crop', time: 'منذ 7 ساعات' },
+  
+  // Culture
+  { id: 6, cat: 'ثقافة', title: 'مهرجان فاس للموسيقى يستقطب نجوماً عالميين', body: '<p>تستضيف مدينة فاس الحدث الثقافي الأبرز في الموسم: مهرجان فاس الدولي للموسيقى. المهرجان يجمع فنانين من مختلف أنحاء العالم في احتفال موسيقي عملاق.</p><p>هذا العام، المهرجان يركز على الموسيقى التقليدية المغربية والموسيقى العالمية المعاصرة.</p><div class="mq">يتوقع حضور أكثر من 100 ألف زائر من المغرب والخارج للاستمتاع بأفضل العروض الموسيقية</div><p>المهرجان يعتبر منصة مهمة لتعريف العالم بالثراء الحضاري والفني للمغرب.</p>', img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=300&fit=crop', time: 'منذ 8 ساعات' }
+];
+
+// Generate more articles
+for (let i = 0; i < 44; i++) {
+  const categories = ['مغرب', 'عالم', 'رياضة', 'اقتصاد', 'تكنولوجيا', 'ثقافة'];
+  const titles = [
+    'اكتشاف جديد في علم الفضاء يغير فهمنا للكون',
+    'شركة تقنية ضخمة تفتتح مقراً جديداً في الرباط',
+    'نعمة بيئية: غابات المغرب تستعيد أشجارها',
+    'رياضي مغربي يحطم رقماً قياسياً عالمياً',
+    'جامعة مغربية تدخل تصنيفات أفضل الجامعات العالمية',
+    'مشروع سياحي ضخم يفتتح على شاطئ الدار البيضاء',
+    'فنان مغربي يعرض أعماله في متحف بريطاني مشهور',
+    'المغرب ينظم قمة افريقية حول التنمية المستدامة',
+    'اكتشاف أثري مهم في مدينة مغربية عريقة',
+    'طبيب مغربي يفوز بجائزة عالمية في الطب',
+    'حكومة تعلن عن خطة لتحسين الصحة العامة',
+    'مدينة مغربية تفوز بجائزة أفضل مدينة سياحية',
+    'شركة ناشئة مغربية تحصل على تمويل ضخم',
+    'مبادرة اجتماعية تغير حياة آلاف الأسر',
+    'كاتب مغربي يفوز بجائزة أدبية دولية'
+  ];
+  
+  const cat = categories[i % categories.length];
+  const title = titles[i % titles.length] + (i >= titles.length ? ` (${Math.floor(i/titles.length)})` : '');
+  
+  articles.push({
+    id: 7 + i,
+    cat: cat,
+    title: title,
+    body: `<p>${title}</p><p>هذا الخبر يعكس التطورات المهمة في ${cat}. تابع معنا لمعرفة المزيد عن التفاصيل الكاملة لهذا الحدث.</p>`,
+    img: [
+      'https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?w=500&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1551633440-0117d3fa62e6?w=500&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1432888498266-38c75b13e784?w=500&h=300&fit=crop'
+    ][i % 5],
+    time: `منذ ${8 + Math.floor(i/5)} ساعات`
+  });
+}
+
+// ===== DOM ELEMENTS =====
+const I = id => document.getElementById(id);
+
+// ===== RENDER FUNCTIONS =====
+function renderCard(article) {
+  const badges = { 'عالم':'🌍','مغرب':'🇲🇦','رياضة':'⚽','اقتصاد':'📊','تكنولوجيا':'💻','ثقافة':'🎭' };
+  const emoji = badges[article.cat] || '📰';
+  return `
+    <div class="card" onclick="openArticle(${article.id})">
+      <div class="card-img-wrap">
+        <img src="${article.img}" alt="${article.title}">
+        <div class="card-img-gradient"></div>
+        <span class="card-img-badge">${emoji} ${article.cat}</span>
+      </div>
+      <div class="inf">
+        <h4>${article.title}</h4>
+        <span>${article.time}</span>
+      </div>
+    </div>
+  `;
+}
+
+// ===== PAGINATION =====
+const pageSize = 24;
+let homePage = 0;
+
+function loadHome() {
+  const end = Math.min(pageSize * (homePage + 1), articles.length);
+  const homeArticles = articles.slice(0, end);
+  I('homeGrid').innerHTML = homeArticles.map(renderCard).join('');
+  
+  const remaining = articles.length - end;
+  if (remaining > 0) {
+    I('homeMore').innerHTML = `<button class="more-btn" onclick="homePage++; loadHome()">عرض المزيد (${remaining})</button>`;
+  } else {
+    I('homeMore').innerHTML = '';
+  }
+}
+
+// ===== RENDER CATEGORIES =====
+function loadCategories() {
+  const categories = {
+    world: 'عالم',
+    morocco: 'مغرب',
+    sport: 'رياضة',
+    economy: 'اقتصاد',
+    tech: 'تكنولوجيا',
+    culture: 'ثقافة'
+  };
+  
+  for (const [page, cat] of Object.entries(categories)) {
+    const filtered = articles.filter(a => a.cat === cat);
+    I(`${page}Grid`).innerHTML = filtered.map(renderCard).join('') || '<p style="text-align: center; color: #888;">لا توجد أخبار في هذا القسم حالياً</p>';
+  }
+}
+
+// ===== MODAL FUNCTIONS =====
+function openArticle(id) {
+  const article = articles.find(a => a.id === id);
+  if (!article) return;
+  
+  const modalContent = `
+    <img class="m-img" src="${article.img}" alt="${article.title}">
+    <div class="m-wrap">
+      <div class="m-bg">${article.cat}</div>
+      <h1 class="m-h1">${article.title}</h1>
+      <div class="m-mt">
+        <span>📅 ${article.time}</span>
+        <span class="m-cat">🏷️ ${article.cat}</span>
+        <span>📰 تمارة TV</span>
+      </div>
+      <div class="m-bd">${article.body}</div>
+    </div>
+  `;
+  
+  I('mi').innerHTML = modalContent;
+  I('modal').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  I('modal').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+I('modal').addEventListener('click', e => {
+  if (e.target === I('modal')) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ===== PAGE SWITCHING =====
+function switchPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  I(`page-${pageId}`).classList.add('on');
+  
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.querySelector(`nav a[onclick="switchPage('${pageId}')"]`).classList.add('active');
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== ARTICLE TOGGLE =====
+function toggleArticle() {
+  I('fsFull').classList.toggle('on');
+  if (I('fsFull').classList.contains('on')) {
+    I('fsFull').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ===== INITIALIZATION =====
+loadHome();
+loadCategories();
+</script>
+</body>
+</html>
