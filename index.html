@@ -1110,17 +1110,32 @@ nav ul li a.active {
     gap: 30px;
   }
   
+  nav {
+    position: relative;
+  }
+  
   nav ul {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   nav ul li {
-    width: 100%;
+    width: auto;
   }
   
   nav ul li a {
     text-align: center;
+    padding: 8px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  
+  nav ul {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
   }
   
   .m-h1 {
@@ -1175,6 +1190,10 @@ nav ul li a.active {
     height: 140px;
   }
   
+  .card img, .card-img-wrap img {
+    filter: brightness(0.8);
+  }
+  
   .side {
     grid-template-columns: 1fr;
   }
@@ -1192,9 +1211,24 @@ nav ul li a.active {
     padding: 20px 15px;
   }
   
+  nav {
+    overflow-x: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  nav ul {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+  
   nav ul li a {
-    padding: 10px 12px;
-    font-size: 11px;
+    padding: 10px 14px;
+    font-size: 12px;
+    white-space: nowrap;
   }
   
   .ctr h2 {
@@ -1330,7 +1364,7 @@ nav ul li a.active {
     <div class="fs-in">
       <div class="fs-top">
         <div class="fs-img-wrap">
-          <img class="fs-img" src="victim.jpg" alt="صورة القصة الرئيسية">
+          <img class="fs-img" src="https://temaraabdo765-art.github.io/tamara-tv/victim.jpg" alt="صورة القصة الرئيسية">
           <div class="fs-img-gradient"></div>
           <div class="fs-img-overlay">
             <div class="fs-img-badge">🔴 حصري</div>
